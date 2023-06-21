@@ -4,4 +4,4 @@ librosa
 ffmpeg
 gradio
 pytube
-jupyter nbextension enable --py widgetsnbextension
+
