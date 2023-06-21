@@ -5,4 +5,4 @@ ffmpeg
 torchaudio ipywebrtc notebook
 -q gradio
 pytube
-!jupyter nbextension enable --py widgetsnbextension
+jupyter nbextension enable --py widgetsnbextension
