@@ -1,13 +1,35 @@
-import streamlit as st
-from audiorecorder import audiorecorder
+import os
+import torch
+from transformers import pipeline
 
-st.title("Audio Recorder")
-audio = audiorecorder("Click to record", "Recording...")
+MODEL_NAME = "biodatlab/whisper-th-medium-combined"
+lang = "th"
 
-if len(audio) > 0:
-    # To play audio in frontend:
-    st.audio(audio.tobytes())
+device = 0 if torch.cuda.is_available() else "cpu"
+
+pipe = pipeline(
+    task="automatic-speech-recognition",
+    model=MODEL_NAME,
+    chunk_length_s=30,
+    device=device,
+)
+
+# Upload csv data
+with st.sidebar.header('Upload your MP3'):
+    uploaded_file = st.sidebar.file_uploader("Upload your input mp3 file", type=["mp3"])
+
+# Pandas Profiling Report
+if uploaded_file is not None:
+    transcriptions = pipe(
+        "uploaded_file",
+        batch_size=16,
+        return_timestamps=False,
+        generate_kwargs={"language": "<|th|>", "task": "transcribe"}
+    )["text"]
+    print(transcriptions)
     
-    # To save audio to a file:
-    wav_file = open("audio.mp3", "wb")
-    wav_file.write(audio.tobytes())
+    pr = ProfileReport(df, explorative=True)
+    st.header('**Input DataFrame**')
+    st.write(df)
+    st.write('---')
+
