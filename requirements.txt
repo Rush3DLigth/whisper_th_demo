@@ -2,6 +2,6 @@ streamlit-audiorecorder
 git+https://github.com/huggingface/transformers
 librosa
 ffmpeg
--q gradio
+gradio
 pytube
 jupyter nbextension enable --py widgetsnbextension
