@@ -4,4 +4,7 @@ librosa
 ffmpeg
 gradio
 pytube
+torchaudio
+ipywebrtc
+notebook
 
