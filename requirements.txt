@@ -2,7 +2,6 @@ streamlit-audiorecorder
 git+https://github.com/huggingface/transformers
 librosa
 ffmpeg
-torchaudio ipywebrtc notebook
 -q gradio
 pytube
 jupyter nbextension enable --py widgetsnbextension
